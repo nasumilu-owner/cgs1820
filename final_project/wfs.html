@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--
+    Name:           Michael Lucas
+    Current Date:   2020-07-17
+    Class.section:  CGS1821.0M1
+    Assignment:     Final Project
+    Language:       HTML5
+    Purpose:        Uses grid layout for responsive design 
+                    Has a 2 column layout using section & aside
+                    Has tables and accordion transition
+                    Use Google font to for code elements
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="web_author" content="Michael Lucas">
+        <title>Web Mapping - WFS</title>
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/slicknav.css" rel="stylesheet">
+        <link href="styles/wms.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+        <script src="js/jquery.slicknav.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#menu').slicknav({prependTo: '#mobile_menu', label: 'Site Menu'});
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source type="image/webp" srcset="images/wfs_path.webp">
+                <img src="images/wfs_path.png" alt="WFS">
+            </picture>
+        </header>
+        <nav id="mobile_menu"></nav>
+        <nav id="main_menu">
+            <ul id="menu">
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><a href="wms.html" title="Find out more about WMS">Web Map Service</a></li>
+                <li><a href="wfs.html" title="Find out more about WFS">Web Feature Service</a></li>
+                <li><a href="service_request.html" title="Easy to use form to query WMS">Map Service Demo</a></li>
+            </ul>
+        </nav>
+        <main>
+            <aside>
+                <h3>Operations</h3>
+                <nav>
+                    <ul>
+                        <li><a href="#wfs-getcapabilities">GetCapabilities</a></li>
+                        <li><a href="#wfs-describefeaturetype">DescribeFeatureType</a></li>
+                        <li><a href="#wfs-getpropertyvalue">GetPropertyValue</a></li>
+                        <li><a href="#wfs-getfeature">GetFeature</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <section>
+                <picture>
+                    <source type="image/webp" srcset="images/wfs.webp">
+                    <img src="images/wfs.png" alt="">
+                </picture>
+                <h2> Web Feature Service &#40;WFS&#41;</h2>
+                <h3>Introduction</h3>
+                <p>
+                    The web feature service &#40;<abbr title="Web Feature Service">WFS</abbr>&#41; is an International 
+                    Standard which defines eleven operations. This standard allows clients the ability to 
+                    create, modify, and exchange geographical information via the Internet. The feature data is
+                    exchanged utilizing Geography Markup Language &#40;<abbr title="Geography Markup Language">GML</abbr>&#41;. 
+                </p>
+                <p>
+                    To understand a <abbr title="Web Feature Service">WFS</abbr> it is important to understand what 
+                    constitutes a feature. A feature is the spatial representation of some thing in coordinate space.
+                    Features can be either a point, line, polygon, or a collection. Homogeneous features that
+                    share a common set of attributes are commonly called a feature class.
+                </p>
+                <h3>Assumptions</h3>
+                <p>
+                    It is assumed that you have some basic understanding of web services and the <abbr title="OGC Web Service Context">OWS</abbr>
+                    paradigm. Additional information on this can be found on the <abbr title="Open Geospatial Consortium">OGC</abbr> 
+                    <a href="https://www.ogc.org/" title="Open Geospatial Consortium">website</a>.
+                </p>
+                <h3>Operations</h3>
+                <h4 id="wfs-getcapabilities">GetCapabilities</h4>
+                <p>
+                    The mandatory GetCapabilities operation provide metadata &#91;<i>machine readable information</i>&#93; describing the 
+                    server&apos;s capabilities. There are two required parameters <kbd>SERVICE</kbd> &amp; <kbd>REQUEST</kbd>. The <kbd>SERVICE</kbd>
+                    parameter must have a value of <strong>WFS</strong> & the <kbd>REQUEST</kbd> must have a value of <strong>GetCapabilities</strong>.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SERVICE</td>
+                            <td>The request service type</td>
+                            <td>Yes</td>
+                            <td>WFS</td>
+                        </tr>
+                        <tr>
+                            <td>REQUEST</td>
+                            <td>The requested service operation.</td>
+                            <td>Yes</td>
+                            <td>GetCapabilities</td>
+                        </tr>
+                        <tr>
+                            <td>VERSION</td>
+                            <td>The requested Version</td>
+                            <td>No</td>
+                            <td>1.0.0 | 1.1.0 | 2.0.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Example of the GetCapabilities operation using HTTP GET method:</p>
+                <code>https://map.nasumilu.com/ows?service=wfs&version=2.0.0&request=GetCapabilities</code>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+
+                <h4 id="wfs-describefeaturetype">DescribeFeatureType</h4>
+                <p>
+                    The mandatory DescribeFeatureType operation is used to describe the structure of any feature type available to the server.
+                    In other words, it provides the client with information about the features spatial reference system, geometry type, and properties as 
+                    an <abbr title="Extensible Markup Language">XML</abbr> schema definition (<abbr title="XML Schema Definition">XSD</abbr>).
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SERVICE</td>
+                            <td>The request service type</td>
+                            <td>Yes</td>
+                            <td>WFS</td>
+                        </tr>
+                        <tr>
+                            <td>REQUEST</td>
+                            <td>The requested service operation.</td>
+                            <td>Yes</td>
+                            <td>DescribeFeatureType</td>
+                        </tr>
+                        <tr>
+                            <td>VERSION</td>
+                            <td>The requested Version</td>
+                            <td>No</td>
+                            <td>1.0.0 | 1.1.0 | 2.0.0</td>
+                        </tr>
+                        <tr>
+                            <td>TYPENAMES</td>
+                            <td>A comma-separated list of feature type names</td>
+                            <td>Yes</td>
+                           <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>OUTPUTFORMAT</td>
+                            <td>The format for which the server should return the feature description information</td>
+                            <td>No</td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Example of the DescribeFeatureType operation using HTTP GET method:</p>
+                <code>https://map.nasumilu.com/wfs?service=wfs&version=2.0.0&request=DescribeFeatureType&typeNames=bof:parcel</code>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+
+                <h4 id="wfs-getpropertyvalue">GetPropertyValue</h4>
+                <p>Description of get property value</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PARAM</td>
+                            <td>DESCRIPTION</td>
+                            <td>YES|NO</td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Example of the GetPropertyValue operation using HTTP GET method:</p>
+                <code></code>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+
+                <h4 id="wfs-getfeature">GetFeature</h4>              
+                <p>
+                    The GetFeature operation is used to get feature instances from the WFS data store, either spatially or non-spatially.
+                    The client should also be able to specify which of the feature's properties to retieve. This operation is very 
+                    flexible to allow the client to retrieve features in a variety of was, as such below are a few of the more common 
+                    ways to obtain feature(s) from a WFS. 
+                </p>
+                <div class="accordion">
+                    <h5><a href="#wfs-getfeature-example1">Example 1 - Retrieve the maximum allowed features</a></h5>
+                    <div id="wfs-getfeature-example1">
+                        <p>
+                            This example will retrieve the maximum number of features allowed by the WFS. 
+                        </p>
+<!-- preformated text not indented since space is preserved -->
+<pre>
+    <code>
+    https://map.nasumilu.com/wfs?service=wfs
+        &version=2.0.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+    </code>
+</pre>
+                    </div>
+                    <h5><a href="#wfs-getfeature-example2">Example 2 - Limit results to 5 features</a></h5>
+                    <div id="wfs-getfeature-example2">
+                        <p>
+                            This example will retrieve up to 5 features from the WFS. 
+                        </p>
+<!-- preformated text not indented since space is preserved -->
+<pre>
+    <code>
+    https://map.nasumilu.com/wfs?service=wfs
+        &version=2.0.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+        &count=5
+    </code>
+</pre>
+<p> Or for WFS version 1.0.0 or 1.1.0 use the <kbd>maxFeatures</kbd> parameter.</p>
+<pre>
+    <code>
+        https://map.nasumilu.com/wfs?service=wfs
+        &version=1.1.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+        &maxFeatures=5
+    </code>
+</pre>
+<p>Example for WFS version 1.0.0</p>
+<pre>
+    <code>
+        https://map.nasumilu.com/wfs?service=wfs
+        &version=1.0.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+        &maxFeatures=5
+    </code>
+</pre>
+                    </div>
+                    <h5><a href="#wfs-getfeature-example3">Example 3</a></h5>
+                    <div id="wfs-getfeature-example3">
+                        <p>This example of the GetFeature operation will retrieve the maximum amout of the feature allowed by by the WFS</p>
+<!-- preformated text not indented since space is preserved -->
+<pre>
+    <code>
+    https://map.nasumilu.com/wfs?service=wfs
+        &version=2.0.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+    </code>
+</pre>
+                    </div>
+                    <h5><a href="#wfs-getfeature-example4">Example 4</a></h5>
+                    <div id="wfs-getfeature-example4">
+                        <p>This example of the GetFeature operation will retrieve the maximum amout of the feature allowed by by the WFS</p>
+<!-- preformated text not indented since space is preserved -->
+<pre>
+    <code>
+    https://map.nasumilu.com/wfs?service=wfs
+        &version=2.0.0
+        &request=GetFeature
+        &typeNames=bof:parcel
+    </code>
+</pre>
+                    </div>
+                </div>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+            </section>
+           
+        </main>
+        <footer>
+            <p>Background map image provided by &copy; OpenStreetMap contributors &mdash; data avaliable under 
+                <a href="https://opendatacommons.org/licenses/odbl/" title="Open Database License">
+                ODbL</a> & cartography is licensed as <a href="https://www.openstreetmap.org/copyright">CC BY-SA</a>
+            </p>
+            <p>All other images by &copy; 2020 Michael Lucas. Content is available under this 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" title="CC BY-SA 4.0">license</a>
+            </p>
+        </footer>
+    </body>
+</html>

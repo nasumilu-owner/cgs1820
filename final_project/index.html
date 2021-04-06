@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+	<!--
+        Name:           Michael Lucas
+        Current Date:   2020-07-17
+        Class.section:  CGS1821.0M1
+        Assignment:     Final Project
+        Language:       HTML5
+        Purpose:        Uses grid layout for responsive design.
+                        Has a 3 column layout using sections.
+                        Video embeded
+    -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="web_author" content="Michael Lucas">
+        <title>Web Mapping</title>
+        <link rel="icon" href="images/favicon.ico">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/slicknav.css" rel="stylesheet">
+        <link href="styles/final.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+        <script src="js/jquery.slicknav.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#menu').slicknav({prependTo: '#mobile_menu', label: 'Site Menu'});
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source type="image/webp" srcset="images/map_path.webp">
+                <img src="images/map_path.png" alt="GIS">
+            </picture>
+        </header>
+        <nav id="mobile_menu"></nav>
+        <nav id="main_menu">
+            <ul id="menu">
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><a href="wms.html" title="Find out more about WMS">Web Map Service</a></li>
+                <li><a href="wfs.html" title="Find out more about WFS">Web Feature Service</a></li>
+                <li><a href="service_request.html" title="Easy to use form to query WMS">Map Service Demo</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="wms">
+                <picture>
+                	<source type="image/webp" srcset="images/wms.webp">
+                        <img src="images/wms.png" alt="Web Map Service Image">   
+                </picture>
+                <h3 title="WMS">Web Map Service</h3>
+ 		        <p>
+		            The primary responsibility of a web map service &#40;<abbr title="Web Map Service">WMS</abbr>&#41; is to produce georeferenced images from geographic information.
+                    The Open Geospatial Consortium &#40;<abbr title="Open Geospatial Consortium">OGC</abbr>&#41; first released the <abbr title="Web Map Service">WMS</abbr> 
+                    standard, version 1.0.0 on April 19, 2000. Version 1.3.0 is the current standard which defines three operations GetCapabilities, GetMap, and GetFeatureInfo following 
+		            the <abbr title="Open Geospatial Consortium">OGC</abbr> Web Services Context &#40;<abbr title="OGC Web Service Context">OWS</abbr>&#41;. 
+		        </p>
+                <p>
+                    GetCapabilities is a mandatory operation which provides clients with a listing of what interfaces
+                    the server supports, layers, styles, format, minimum and maximum extent &hellip;
+                </p>
+                <p>      
+                    <a class="btn" href="wms.html" title="More information on WMTS">Learn More</a>
+                </p>
+            </section>
+            <section id="wfs">
+                <picture>
+                	<source type="image/webp" srcset="images/wfs.webp">
+                    <img src="images/wfs.png" alt="Web Feature Service">
+                </picture>
+                <h3 title="WFS">Web Feature Service</h3>
+		        <p>
+                    The web feature service &#40;<abbr title="Web Feature Service">WFS</abbr>&#41; is an International 
+                    Standard which defines eleven operations. This standard allows clients the ability to 
+                    create, modify, and exchange geographical information via the Internet. The feature data is
+                    exchanged utilizing Geography Markup Language &#40;<abbr title="Geography Markup Language">GML</abbr>&#41;. 
+                </p>
+                <p>
+                    To understand a <abbr title="Web Feature Service">WFS</abbr> it is important to understand what 
+                    constitutes a feature. A feature is the spatial representation of some thing as in coordinate space.
+                    Features can be either a point, line, polygon, or a collection. Homogeneous collections &hellip;
+                </p>
+		        <p>
+                    <a class="btn" href="wfs.html" title="More information on WFS">Learn More</a>
+                </p>
+            </section>
+            <section id="media-opensource">
+                <h2>OpenSource GIS!</h2>
+                    <div style="margin:auto;background-color:#fff;border-radius:0.8em;width:90%;">
+                        <a href="http://geoserver.org/" target="_blank" title="GeoServer">
+                            <picture>
+                            <source type="image/webp" srcset="images/geoserver-logo.webp">
+                                <img src="images/geoserver-logo.png" alt="GeoServer">
+                           
+                        </picture> </a>
+                        <a href="https://qgis.org/en/site/" target="_blank" title="QGIS">
+
+                        <picture>
+
+                            <source type="image/webp" srcset="images/qgis.webp">
+                                <img src="images/qgis.png" alt="QGIS">
+                            
+                        </picture></a>
+                        <a href="https://www.postgresql.org/" target="_blank" title="PostgreSQL ">
+                        <picture>
+                            <source type="image/webp" srcset="images/postgresql.webp">
+                                <img src="images/postgresql.png" alt="Postgesql">
+                        </picture></a>
+                        <a href="https://geotools.org/" target="_blank" title="GeoTools ">
+
+                        <picture>
+                            <source type="image/webp" srcset="images/geotools-logo.webp">
+                                <img src="images/geotools-logo.png" alt="GeoTools">
+                            
+                        </picture></a>
+                        <a href="https://www.ogc.org/" target="_blank" title="OGC">
+                        <picture>
+                            <source type="image/webp" srcset="images/ogc-logo.webp">
+                            <img src="images/ogc-logo.png" alt="OGC">
+                            
+                        </picture></a>
+                        <a href="https://qgis.org/en/site/" target="_blank" title="OSGeo">
+                        <picture>
+                            <source type="image/webp" srcset="images/osgeo.webp">
+                                 <img src="images/osgeo.png" alt="OSGeo">
+                            
+                        </picture></a>
+                    </div>
+            </section>
+            <section id="media">
+                <embed id="learn-gis" width="500" height="400" src="https://www.youtube.com/embed/8oEnJvLzDnQ">
+                <div id="media-description">
+                    <h2>Learn GIS!</h2>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>Background map image provided by &copy; OpenStreetMap contributors &mdash; data avaliable under 
+                <a href="https://opendatacommons.org/licenses/odbl/" title="Open Database License">
+                ODbL</a> & cartography is licensed as <a href="https://www.openstreetmap.org/copyright">CC BY-SA</a>
+            </p>
+            <p>PostgreSQL&trade; elephant logo (Slonik) is a registered trademark of <a href="https://www.postgres.ca/">
+                The PostgreSQL Community Assoication of Canada</a>
+            </p>
+            <p>GeoServer&reg; logo provided by <a href="http://geoserver.org/">Open Source Geospatial Foundation</a></p>
+            <p>The QGIS&reg; logo is  a registred trademark.
+                <a href="https://www.qgis.org/en/site/getinvolved/governance/trademark/index.html">
+                QGIS Trademark and brand guidelines</a></p>
+            <p>GeoTools&reg; logo provided by <a href="https://geotools.org/"></a>Open Source Geospatial Foundation | GeoTools project</p>
+            <p>OSGeo&reg; logo provided by <a href="https://www.osgeo.org/">Open Source Geospatial Foundation</a></p>
+            <p>OGC&reg; log provided by <a href="https://www.ogc.org/">Open Geospatial Consortium</a></p>
+            <p>All other images by &copy; 2020 Michael Lucas. Content is available under this 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" title="CC BY-SA 4.0">license</a>
+            </p>
+        </footer>
+    </body>
+</html>
+

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+	<!--
+        Name:           Michael Lucas
+        Current Date:   2020-07-17
+        Class.section:  CGS1821.0M1
+        Assignment:     Final Project
+        Language:       HTML5
+        Purpose:        Uses grid layout for responsive design 
+                        Has a 2 column layout using section & aside
+                        Has tables and transition
+    -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="web_author" content="Michael Lucas">
+        <title>Web Mapping - WMS</title>
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/slicknav.css" rel="stylesheet">
+        <link href="styles/wms.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+        <script src="js/jquery.slicknav.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#menu').slicknav({prependTo: '#mobile_menu', label: 'Site Menu'});
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source type="image/webp" srcset="images/wms_path.webp">
+                <img src="images/wms_path.png" alt="WMS">
+            </picture>
+        </header>
+        <nav id="mobile_menu"></nav>
+        <nav id="main_menu">
+            <ul id="menu">
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><a href="wms.html" title="Find out more about WMS">Web Map Service</a></li>
+                <li><a href="wfs.html" title="Find out more about WFS">Web Feature Service</a></li>
+                <li><a href="service_request.html" title="Easy to use form to query WMS">Map Service Demo</a></li>
+            </ul>
+        </nav>
+        <main>
+            <aside>
+                <h3>Operations</h3>
+                <nav>
+                    <ul>
+                        <li><a href="#wms-getcapabilities">GetCapabilities</a></li>
+                        <li><a href="#wms-getmap">GetMap</a></li>
+                        <li><a href="#wms-getfeatureinfo">GetFeatureInfo</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <section id="wms-section">
+                <picture class="service_icon">
+                    <source type="image/webp" srcset="images/wms.webp">
+                    <img src="images/wms.png" alt="">
+                </picture>
+                <h2>Web Map Service &#40;WMS&#41;</h2>
+                <h3>Introduction</h3>
+                <p>
+                    The primary responsibility of a web map server is to produce georeferenced images from geographic information. 
+                    The <abbr title="Open Geospatial Consortium">OGC</abbr> first released the <abbr title="Web Map Service">WMS</abbr> 
+                    standard, version 1.0.0 on April 19, 2000. Version 1.3.0 is the current standard which defines three 
+                    operations GetCapabilities, GetMap, and GetFeatureInfo.
+                </p>
+                <h3>Assumptions</h3>
+                <p>
+                    It is assumed that you have some basic understanding of web services and the <abbr title="OGC Web Service Context">OWS</abbr>
+                    paradigm. Additional information on this can be found on the <abbr title="Open Geospatial Consortium">OGC</abbr> 
+                    <a href="https://www.ogc.org/" title="Open Geospatial Consortium">website</a>.
+                </p>
+                <h3>Operations</h3>
+                <h4 id="wms-getcapabilities">GetCapabilities</h4>
+                <p>
+                    The mandatory GetCapabilities operation provides metadata &#91;<i>machine readable information</i>&#93; describing the 
+                    server&apos;s capabilities. There are two required parameters <kbd>SERVICE</kbd> &amp; <kbd>REQUEST</kbd>. The <kbd>SERVICE</kbd>
+                    parameter must have a value of <strong>WMS</strong> & the <kbd>REQUEST</kbd> must have a value of <strong>GetCapabilities</strong>.
+                </p>
+                <table id="wms-getcapabilities-detail">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>VERSION</td>
+                            <td>The requested Version</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>SERVICE</td>
+                            <td>The request service type</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>WMS</td>
+                        </tr>
+                        <tr>
+                            <td>REQUEST</td>
+                            <td>The requested service operation.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>GetCapabilities</td>
+                        </tr>
+                        <tr>
+                            <td>FORMAT</td>
+                            <td>Output format of the service metadata response</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>UPDATESEQUENCE</td>
+                            <td>Sequence number or string for cached control</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="1">
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" alt="Yes" class="yes-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = Yes
+                            </td>
+                            <td colspan="3">
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheckcheck.png" title="No" alt="No" class="no-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = No
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <h5>Examples</h5>
+                <div class="accordion">
+                    <h5><a href="#wms-getcapabilities-example1">GetCapabilities Example for Version 1.0.0</a></h5>
+                    <div id="wms-getcapabilities-example1" class="short-example">
+                        <p>
+                            <code>https://map.nasumilu.com/ows?service=wms&version=1.0.0&request=GetCapabilities</code>
+                        </p>
+                    </div>
+                    <h5><a href="#wms-getcapabilities-example2">GetCapabilities Example for Version 1.1.0</a></h5>
+                    <div id="wms-getcapabilities-example2" class="short-example">
+                        <p>
+                            <code>https://map.nasumilu.com/ows?service=wms&version=1.1.0&request=GetCapabilities</code>
+                        </p>
+                    </div>
+                    <h5><a href="#wms-getcapabilities-example3">GetCapabilities Example for Version 1.3.0</a></h5>
+                    <div id="wms-getcapabilities-example3" class="short-example">
+                        <p>
+                            <code>https://map.nasumilu.com/ows?service=wms&version=1.3.0&request=GetCapabilities</code>
+                        </p>
+                    </div>
+                </div>
+                
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+                <hr>
+                <h4 id="wms-getmap">GetMap</h4>
+                <p>
+                    The mandatory GetMap operation is used to retrieved the georeferenced image &#91;map&#93; or a service exception when an error occured.
+                    Similar to the GetCapabilities operation the GetMap has the following parameters:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>VERSION</td>
+                            <td>The requested service version; A value of "1.3.0" must be used for GetMap requests
+                                to comply with ISO 19128.
+                            </td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>1.0.0 | 1.3.0</td>
+                        </tr>
+                        <tr>
+                            <td>REQUEST</td>
+                            <td>The requested service operation.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>GetMap</td>
+                        </tr>
+                        <tr>
+                            <td>LAYERS</td>
+                            <td>A comma&#45;separated list of requested map layers</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>STYLES</td>
+                            <td>A comma&#45;separated list of one style per requested layer</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>CRS</td>
+                            <td>The coordinate reference system for which the BBOX parameter utilizes</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>BBOX</td>
+                            <td>The requested min. & max. x & y-coordinate value</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>WIDTH</td>
+                            <td>The georeference map image&apos;s width in pixels</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>HEIGHT</td>
+                            <td>The georeference map image&apos;s height in pixels</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>FORMAT</td>
+                            <td>Indicates the desired image output format</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>TRANSPARENT</td>
+                            <td>Indicate whether the map image should have a transparent background.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>true | false</td>
+                        </tr>
+                        <tr>
+                            <td>BGCOLOR</td>
+                            <td>Hexadecimal color value fot he background color</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>#0xFFFFFF</td>
+                        </tr>
+                        <tr>
+                            <td>EXCEPTION</td>
+                            <td>Indicates the format in which exceptions are to be reported by the service</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>TIME</td>
+                            <td>Time value of layer desired</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>ELEVATION</td>
+                            <td>Elevation of the layer desired</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="1">
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" alt="Yes" class="yes-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = Yes
+                            </td>
+                            <td colspan="3">
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheckcheck.png" title="No" alt="No" class="no-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = No
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p>Example of the GetMap operation using HTTP GET method:</p>
+                <code id="code-example">https://map.nasumilu.com/bof/wms?service=WMS&version=1.1.0&request=GetMap&layers=bof%3Abellamyoaksfarm&bbox=-9192698.0%2C3486522.500000001%2C-9187783.0%2C3494379.249999998&width=480&height=768&srs=EPSG%3A3857&format=image/png</code>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+                <hr>
+                <h4 id="wms-getfeatureinfo">GetFeatureInfo</h4>
+                <p>
+                    This optional operation is design to provide clients with a capabiltiy of obtaining information about specific features in the map's picture. When the user clicks
+                    onto the georeferenced image the coordinate of the click in reference to the image (top, left) is sent to the WMS to be translated and query the spatial data for 
+                    additional information. 
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>VERSION</td>
+                            <td>The requested service version</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>1.3.0</td>
+                        </tr>
+                        <tr>
+                            <td>REQUEST</td>
+                            <td>The service requsted</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>GetFeatureInfo/td>
+                        <tr>
+                            <td>QUERY_LAYER</td>
+                            <td>Comma separated list of one or more layers to query.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>INFO_FORMAT</td>
+                            <td>The return format of the feature's info</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>FEATURE_COUNT</td>
+                            <td>Indicates the total number of feature's info to return</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>I</td>
+                            <td>The i-coordinate i pixels of the feature defined by the map's coordinate system.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>Integer value between 0 & the maximum value of the i axis</td>
+                        </tr>
+                        <tr>
+                            <td>J</td>
+                            <td>The j-coordinate in pixels of the feature defined by the map's coordinate system.</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" title="Yes" alt="Yes" class="yes-icon">
+                                </picture>
+                            </td>
+                            <td>Integer value between 0 and the maximum value of the j axis</td>
+                        </tr>
+                        <tr>
+                            <td>EXCEPTION</td>
+                            <td>Indicates the format in which exceptions are to be reported by the service</td>
+                            <td>
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheck.png" title="No" alt="No" class="no-icon">
+                                </picture>
+                            </td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="1">
+                                <picture>
+                                    <source type="image/webp" srcset="images/check.webp">
+                                    <img src="images/check.png" alt="Yes" class="yes-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = Yes
+                            </td>
+                            <td colspan="3">
+                                <picture>
+                                    <source type="image/webp" srcset="images/uncheck.webp">
+                                    <img src="images/uncheckcheck.png" title="No" alt="No" class="no-icon" style="padding-right: 0.1em;padding-left:1.5em;">
+                                </picture>
+                                = No
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <p>Example of the GetFeatureInfo operation using HTTP GET method:</p>
+                <code>https://map.nasumilu.com/bof/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&FORMAT=image%2Fpng&TRANSPARENT=true&QUERY_LAYERS=bof%3Abellamyoaksfarm&LAYERS=bof%3Abellamyoaksfarm&INFO_FORMAT=application/vnd.ogc.gml&I=50&J=50&CRS=EPSG%3A3857&STYLES=&WIDTH=101&HEIGHT=101&BBOX=-9190117.55903557%2C3491254.059947751%2C-9189635.590438515%2C3491736.0285448045</code>
+                <a class="top" href="#main_menu">&nbsp;&nbsp;Back to Top</a>
+            </section>
+        </main>
+        <footer>
+            <p>Background map image provided by &copy; OpenStreetMap contributors &mdash; data avaliable under 
+                <a href="https://opendatacommons.org/licenses/odbl/" title="Open Database License">
+                ODbL</a> & cartography is licensed as <a href="https://www.openstreetmap.org/copyright">CC BY-SA</a>
+            </p>
+            <p>All other images by &copy; 2020 Michael Lucas. Content is available under this 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" title="CC BY-SA 4.0">license</a>
+            </p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+	<!--
+        Name:           Michael Lucas
+        Current Date:   2020-07-17
+        Class.section:  CGS1821.0M1
+        Assignment:     Final Project
+        Language:       HTML5
+        Purpose:        Form result page
+    -->
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="web_author" content="Michael Lucas">
+
+        <title>Web Mapping - WMS Service Builder</title>
+        <link rel="icon" href="images/favicon.ico">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/slicknav.css" rel="stylesheet">
+        <link href="styles/wms_result.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"></script>
+        <script src="js/jquery.slicknav.min.js"></script>
+        <script src="js/wms-result.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#menu').slicknav({prependTo: '#mobile_menu', label: 'Site Menu'});
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            <picture>
+                <source type="image/webp" srcset="images/demo-path.webp">
+                <img src="images/demo-path.png" alt="GIS">
+            </picture>
+        </header>
+        <nav id="mobile_menu"></nav>
+        <nav id="main_menu">
+            <ul id="menu">
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><a href="wms.html" title="Find out more about WMS">Web Map Service</a></li>
+                <li><a href="wfs.html" title="Find out more about WFS">Web Feature Service</a></li>
+                <li><a href="service_request.html" title="Easy to use form to query WMS">Map Service Demo</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section>
+                <h2>Your submission has been received.</h2>
+                <p>
+                    Below you will find your georeferenced image.
+                    Thank you for using our web map service builder or click
+                    <a id="wms-resource" href="images/wms-placeholder.png" target="_blank">
+                       here
+                    </a> to open in a new window.
+                </p>
+                <figure id="wms-image">
+                    <img src="images/wms-placeholder.png" alt="wms image">
+                    <figcaption>Unable to load image</figcaption>
+                </figure>
+            </section>
+        </main>
+             <footer>
+            <p>Background map image provided by &copy; OpenStreetMap contributors &mdash; data avaliable under 
+                <a href="https://opendatacommons.org/licenses/odbl/" title="Open Database License">
+                ODbL</a> & cartography is licensed as <a href="https://www.openstreetmap.org/copyright">CC BY-SA</a>
+            </p>
+            <p>All other images by &copy; 2020 Michael Lucas. Content is available under this 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" title="CC BY-SA 4.0">license</a>
+            </p>
+        </footer>
+    </body>
+</html>
+
+

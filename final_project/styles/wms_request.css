@@ -1,0 +1,296 @@
+/*
+    Name:           Michael Lucas
+    Current Date:   2020-07-29
+    Class.section:  CGS1821.0M1
+    Assignment:     Final Project
+    Language:       CSS3
+*/
+
+html {
+    padding: 0;
+    margin: 0;
+    background: #313840;
+    color: #ccc;
+    scroll-behavior: smooth;
+}
+body {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    display: grid;
+    grid-template: repeat(4, auto)/auto;
+    background-color: #282e34;
+}
+
+header {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    text-align: center;
+    background: no-repeat url('../images/openstreets-bg.png');
+    background-position: center;
+    min-height: 250px;
+}
+
+nav#main_menu {
+    grid-row: 2/3;
+    grid-column: 1/2;
+    z-index: 100;
+    text-align: center;
+    border-top: 3px solid #313840;
+    border-bottom: 3px solid #313840;
+}
+
+nav#main_menu ul {
+    list-style: none;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    grid-template: 1fr/repeat(4, 1fr);
+}
+
+nav#main_menu ul li a, aside ul li a {
+    display: block;
+    padding: 0.75em 0;
+    background: #282e34;
+    color: #71C43F;
+}
+
+nav#main_menu ul li a.current {
+    background: #282e34;
+    color: #71C43F;
+}
+
+nav#main_menu ul li a:hover, nav#main_menu ul li a:focus, aside ul li a:hover, aside ul li a:focus {
+    background: #71C43F;
+    color: #282e34;
+}
+
+#mobile_menu {
+    display: none;
+}
+
+main {
+     grid-row: 3/4;
+     grid-column:1/2;
+}
+
+/** Global section style **/
+
+section {
+    width: 60%;
+    margin: auto;
+}
+
+section img {
+   float: left;
+   padding-right: 1.5em;
+}
+
+ /** Content **/
+
+ h4 {
+     color: #7BC74D;
+ }
+
+a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+a.btn {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.25em;
+    margin: auto;
+    max-width: 100px;
+    justify-content: center;
+    border: 2px solid #313840;
+    outline: 1px solid #71C43F50;
+    color: #7BC74D;
+    font-weight: bold;
+    background-color: #313840;
+}
+
+a.btn:hover,  a.btn:focus{
+    color: #313840;
+    background-color: #7BC74D;  
+}
+
+a.top {
+    display: block;
+    font-size: 90%;
+    width: 20%;
+    padding: 1em;
+    text-align: center;
+    margin: auto;
+}
+
+a.top:before {
+    content: url('../images/top.png');
+}
+
+abbr {
+    text-decoration: none;
+}
+
+abbr[title] {
+    cursor: help;
+}
+
+fieldset {
+    border: 2px solid #7BC74D50;
+    margin-bottom: 0.5em;
+    padding: 0.5em 1em;
+}
+
+fieldset.inner-fieldset {
+    border: none;
+}
+
+fieldset p {
+    margin-bottom: 0.5em;
+}
+
+legend {
+    color: #7BC74D;
+    font-weight: bold;
+    padding: 0.5em;
+}
+
+label {
+    color: #CCC;
+    float: left;
+    width: 8em;
+    text-align: right;
+}
+input, select, textarea {
+    width: 15em;
+    padding: 0.25em;
+    margin-left: 0.5em;
+    margin-bottom: 0.7em;
+    border: 1px solid #282e34;
+    border-radius: 0.5em;
+    background-color: #282e34;
+    color: #71C43F;
+    border: 1px solid #71C43F50;
+}
+
+option:hover {
+    background-color: #282e34 !important;
+    color: #71C43F;
+}
+
+textarea {
+    width: 25em;
+    height: 10em;
+}
+
+input:read-only, textarea:read-only {
+    color: #7BC74D50;
+}
+
+input:required::after {
+    content: '*';
+}
+
+#wms-layers label, #wms-styles label, #wms-transparent label {
+    width: 5em;
+    float: none;
+}
+#wms-layers input, #wms-styles input, #wms-transparent input {
+    width: auto;
+    margin-left: 3em;
+}
+
+div.form-controls {
+    padding: 1.5em;
+    text-align: center;
+}
+
+input[type="submit"], input[type="reset"] {
+    text-decoration: none;
+    text-align: center;
+    padding: 0.25em;
+    max-width: 200px;
+    justify-content: center;
+    border: 2px solid #313840;
+    outline: 1px solid #71C43F50;
+    color: #7BC74D;
+    font-weight: bold;
+    background-color: #313840;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus, input[type="reset"]:hover, input[type="reset"]:focus {
+    color: #313840;
+    background-color: #7BC74D;  
+}
+
+#wms-styles-parcel, #wms-styles-premise, #wms-styles-road {
+    display: none;
+}
+
+hr {
+    color: #71C43F50;
+}
+
+/** Footer section */
+footer {
+    border-top: 3px solid #313840;
+    grid-row: 4/5;
+    grid-column: 1/2;
+    padding: 0.75em;
+    background-color: #282e34;
+    text-align: center;
+}
+
+footer p {
+    color: #fff;
+    font-size: smaller;
+    padding: 0;
+}
+
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    header { 
+        min-height: 125px;
+    }
+
+    header img { max-width: 300px;}
+    header h2 { font-size: 200%; }
+    label {
+        width: 6em;
+    }
+    input, select, textarea {
+        width: 7.5em;
+    }
+    input[type="submit"], input[type="reset"] {
+        max-width: 100px;
+    }
+    #main_menu { display: none; }
+    #mobile_menu { display: block; }
+    .slicknav_btn { background-color: #313840 !important; }
+    #mobile_menu ul li a { background-color: #31384050; }
+    #mobile_menu a:focus, #mobile_menu a:hover {
+        background-color: #71C43F !important;
+    }
+    .slicknav_menu {
+        background-color: #313840 !important;
+        padding: 3px;
+    }
+}
+
+@media only screen and (max-width: 479px) {    
+    header h2 { font-size: 200%; }
+    header h3 { font-size: 100%; }
+    section p { font-size: 85%; }
+}

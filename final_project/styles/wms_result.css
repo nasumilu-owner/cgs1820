@@ -1,0 +1,195 @@
+/*
+    Name:           Michael Lucas
+    Current Date:   2020-07-29
+    Class.section:  CGS1821.0M1
+    Assignment:     Final Project
+    Language:       CSS3
+*/
+
+html {
+    padding: 0;
+    margin: 0;
+    background: #313840;
+    color: #eee;
+    scroll-behavior: smooth;
+}
+body {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    display: grid;
+    grid-template: repeat(4, auto)/auto;
+    background-color: #282e34;
+}
+
+header {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    text-align: center;
+    background: no-repeat url('../images/openstreets-bg.png');
+    background-position: center;
+    min-height: 250px;
+}
+
+nav#main_menu {
+    background-color: #282e34;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    z-index: 100;
+    text-align: center;
+    border-top: 3px solid #313840;
+    border-bottom: 3px solid #313840;
+}
+
+nav#main_menu ul {
+    list-style: none;
+    display: grid;
+    padding: 0;
+    margin: 0;
+    grid-template: 1fr/repeat(4, 1fr);
+}
+
+nav#main_menu ul li a, aside ul li a {
+    display: block;
+    padding: 0.75em 0;
+    background: #282e34;
+    color: #71C43F;
+}
+
+nav#main_menu ul li a.current {
+    background: #282e34;
+    color: #71C43F;
+}
+
+nav#main_menu ul li a:hover, nav#main_menu ul li a:focus, aside ul li a:hover, aside ul li a:focus {
+    background: #71C43F;
+    color: #282e34;
+}
+
+#mobile_menu {
+    display: none;
+}
+
+main {
+     grid-row: 3/4;
+     grid-column:1/2;
+}
+
+/** Global section style **/
+
+section {
+    width: 60%;
+    margin: auto;
+}
+
+section figure {
+    display: block;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+figcaption {
+    font-weight: bold;
+    font-size: 85%;
+    color: #71C43F;
+}
+
+ /** Content **/
+
+ h4 {
+     color: #7BC74D;
+ }
+
+a {
+    color: #7BC74D;
+    text-decoration: none;
+}
+
+a.btn {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 0.25em;
+    margin: auto;
+    max-width: 100px;
+    justify-content: center;
+    border: 2px solid #313840;
+    outline: 1px solid #71C43F50;
+    color: #7BC74D;
+    font-weight: bold;
+    background-color: #313840;
+}
+
+/** Footer section */
+footer {
+    border-top: 3px solid #313840;
+    grid-row: 4/5;
+    grid-column: 1/2;
+    padding: 0.75em;
+    background-color: #282e34;
+    text-align: center;
+}
+
+footer a {
+    color: #eee;
+}
+
+footer p {
+    color: #eee;
+    font-size: smaller;
+    padding: 0;
+}
+
+
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    header { 
+        min-height: 125px;
+    }
+    section {
+        width: 90%;
+    }
+
+    section img {
+        max-width: 250px;
+    }
+    header img { max-width: 300px;}
+    header h2 { font-size: 200%; }
+    label {
+        width: 6em;
+    }
+    input, select, textarea {
+        width: 7.5em;
+    }
+    input[type="submit"], input[type="reset"] {
+        max-width: 100px;
+    }
+    #main_menu { display: none; }
+    #mobile_menu { display: block; }
+    .slicknav_btn { background-color: #313840 !important; }
+    #mobile_menu ul li a { background-color: #31384050; }
+    #mobile_menu a:focus, #mobile_menu a:hover {
+        background-color: #71C43F !important;
+    }
+    .slicknav_menu {
+        background-color: #313840 !important;
+        padding: 3px;
+    }
+}
+
+@media only screen and (max-width: 479px) {    
+    header h2 { font-size: 200%; }
+    header h3 { font-size: 100%; }
+    section p { font-size: 85%; }
+}
+
